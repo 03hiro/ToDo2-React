@@ -24,7 +24,7 @@ export const InputButton = (props) => {
           value={todoText}
           onChange={onChangeText}
         />
-        <button onClick={onClickAdd}>追加</button>
+        <button onClick={onClickAdd} type="submit">追加</button>
       </div>
     </div>
   );
