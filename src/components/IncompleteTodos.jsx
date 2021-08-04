@@ -10,7 +10,7 @@ const style = {
 };
 
 export const IncompleteToods = (props) => {
-  const { todos, onClC, onClD } = props;
+  const { todos, completeTodo, deleteTodo } = props;
   return (
     <div style={style}>
       <p className="title">未完了のToDoリスト一覧</p>
@@ -19,8 +19,8 @@ export const IncompleteToods = (props) => {
           return (
             <div key={todo} className="list-todo">
               <li>{todo}</li>
-              <button onClick={() => onClC(index)}>完了</button>
-              <button onClick={() => onClD(index)}>削除</button>
+              <button onClick={() => completeTodo(index)}>完了</button>
+              <button onClick={() => deleteTodo(index)}>削除</button>
             </div>
           );
         })}

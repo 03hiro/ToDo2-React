@@ -43,7 +43,10 @@ export const App = () => {
   };
 
   return (
-    <>
+    <form onSubmit={e => {
+      e.preventDefault()
+      onClickAdd()
+    }}>
       <InputButton
         todoText={todoText}
         onChangeText={onChangeText}
@@ -52,13 +55,13 @@ export const App = () => {
 
       <IncompleteToods
         todos={incompleteTodos}
-        onClC={onClickComplete}
-        onClD={onClickDelete}
+        completeTodo={onClickComplete}
+        deleteTodo={onClickDelete}
       />
       <p style={{ color: "red", textAlign: "center", marginRight: "200px" }}>
         (完了リストの登録は5個までです。)
       </p>
       <CompleteTodos comTodo={completeTodos} onClR={coClickReturn} />
-    </>
+    </form>
   );
 };
