@@ -1,0 +1,43 @@
+body {
+  font-family: sans-serif;
+}
+
+input {
+  width: 300px;
+  height: 20px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+}
+
+button {
+  border-radius: 16px;
+  border: none;
+  padding: 4px 10px;
+  margin-left: 2px;
+}
+
+button:hover {
+  background-color: #0000ff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.title {
+  text-align: center;
+}
+
+.list-todo {
+  display: flex;
+  align-items: center;
+  padding-bottom: 6px;
+}
+
+li {
+  padding-right: 6px;
+}
+
+.todoOver {
+  text-align: center;
+}
