@@ -1,4 +1,4 @@
-import React from "react";
+import React, { VFC } from "react";
 
 const style = {
   backgroundColor: "#66FF99",
@@ -9,18 +9,23 @@ const style = {
   borderRadius: "8px"
 };
 
-export const CompleteTodos = (props) => {
-  const { comTodo, onClR } = props;
+type Props = {
+  completeTodos: string[];
+  coClickReturn: (index: any) => void;
+}
+
+export const CompleteTodos: VFC<Props> = (props) => {
+  const { completeTodos, coClickReturn } = props;
 
   return (
     <div style={style}>
       <p className="title">完了したToDoリスト一覧</p>
       <ul>
-        {comTodo.map((todo, index) => {
+        {completeTodos.map((todo, index) => {
           return (
             <div key={todo} className="list-todo">
               <li>{todo}</li>
-              <button onClick={() => onClR(index)}>戻す</button>
+              <button onClick={() => coClickReturn(index)}>戻す</button>
             </div>
           );
         })}

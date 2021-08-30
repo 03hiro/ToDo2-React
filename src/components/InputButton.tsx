@@ -1,4 +1,4 @@
-import React from "react";
+import React, { VFC } from "react";
 
 const style = {
   backgroundColor: "#00CCCC",
@@ -10,11 +10,17 @@ const style = {
   borderRadius: "10px"
 };
 
-const style2 = {
+const style2: React.CSSProperties = {
   textAlign: "center"
 };
 
-export const InputButton = (props) => {
+type Props = {
+  todoText: string;
+  onChangeText: React.ChangeEventHandler<HTMLInputElement>;
+  onClickAdd: () => void;
+}
+
+export const InputButton: VFC<Props> = (props) => {
   const { todoText, onChangeText, onClickAdd } = props;
   return (
     <div style={style}>

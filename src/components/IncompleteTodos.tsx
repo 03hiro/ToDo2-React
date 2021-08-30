@@ -1,4 +1,4 @@
-import React from "react";
+import React, { VFC } from "react";
 
 const style = {
   backgroundColor: "#66FFFF	",
@@ -9,8 +9,14 @@ const style = {
   borderRadius: "8px"
 };
 
-export const IncompleteToods = (props) => {
-  const { todos, onClC, onClD } = props;
+type Props = {
+  todos: string[];
+  onClickComplete: (index: any) => void;
+  onClickDelete: (index: any) => void;
+}
+
+export const IncompleteToods: VFC<Props> = (props) => {
+  const { todos, onClickComplete, onClickDelete } = props;
   return (
     <div style={style}>
       <p className="title">未完了のToDoリスト一覧</p>
@@ -19,8 +25,8 @@ export const IncompleteToods = (props) => {
           return (
             <div key={todo} className="list-todo">
               <li>{todo}</li>
-              <button onClick={() => onClC(index)}>完了</button>
-              <button onClick={() => onClD(index)}>削除</button>
+              <button onClick={() => onClickComplete(index)}>完了</button>
+              <button onClick={() => onClickDelete(index)}>削除</button>
             </div>
           );
         })}

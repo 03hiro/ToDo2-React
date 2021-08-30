@@ -6,22 +6,25 @@ import { CompleteTodos } from "./components/CompleteTodos";
 
 export const App = () => {
   const [todoText, setTodoText] = useState("");
-  const [incompleteTodos, setIncompleteTodos] = useState([]);
-  const [completeTodos, setCompleteTodos] = useState([]);
+  const [incompleteTodos, setIncompleteTodos] = useState<string[]>([]);
+  const [completeTodos, setCompleteTodos] = useState<string[]>([]);
 
-  const onChangeText = (event) => setTodoText(event.target.value);
+  const onChangeText: React.ChangeEventHandler<HTMLInputElement> | undefined = (event) => setTodoText(event.target.value);
+  
   const onClickAdd = () => {
     if (todoText === "") return;
     const newTodos = [...incompleteTodos, todoText];
     setIncompleteTodos(newTodos);
     setTodoText("");
   };
-  const onClickDelete = (index) => {
+
+  const onClickDelete = (index: any) => {
     const newTodos = [...incompleteTodos];
     newTodos.splice(index, 1);
     setIncompleteTodos(newTodos);
   };
-  const onClickComplete = (index) => {
+
+  const onClickComplete = (index: any) => {
     const newIncompleteTodos = [...incompleteTodos];
     newIncompleteTodos.splice(index, 1);
 
@@ -33,7 +36,7 @@ export const App = () => {
     }
   };
 
-  const coClickReturn = (index) => {
+  const coClickReturn = (index: any) => {
     const newCompleteTodosre = [...completeTodos];
     newCompleteTodosre.splice(index, 1);
 
@@ -52,13 +55,13 @@ export const App = () => {
 
       <IncompleteToods
         todos={incompleteTodos}
-        onClC={onClickComplete}
-        onClD={onClickDelete}
+        onClickComplete={onClickComplete}
+        onClickDelete={onClickDelete}
       />
       <p style={{ color: "red", textAlign: "center", marginRight: "200px" }}>
         (完了リストの登録は5個までです。)
       </p>
-      <CompleteTodos comTodo={completeTodos} onClR={coClickReturn} />
+      <CompleteTodos completeTodos={completeTodos} coClickReturn={coClickReturn} />
     </>
   );
 };
