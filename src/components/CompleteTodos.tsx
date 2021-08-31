@@ -1,4 +1,4 @@
-import React, { VFC } from "react";
+import React, { memo, VFC } from "react";
 
 const style = {
   backgroundColor: "#66FF99",
@@ -10,26 +10,28 @@ const style = {
 };
 
 type Props = {
-  completeTodos: string[];
-  coClickReturn: (index: any) => void;
+  completeTodos: any;
+  // coClickReturn: (index: number) => void;
 }
 
-export const CompleteTodos: VFC<Props> = (props) => {
-  const { completeTodos, coClickReturn } = props;
+export const CompleteTodos: VFC<Props> = memo((props) => {
+  const { completeTodos, } = props;
 
   return (
     <div style={style}>
       <p className="title">完了したToDoリスト一覧</p>
       <ul>
-        {completeTodos.map((todo, index) => {
+        {console.log(completeTodos)
+        }
+        {completeTodos.map((todo: any) => {
           return (
-            <div key={todo} className="list-todo">
-              <li>{todo}</li>
-              <button onClick={() => coClickReturn(index)}>戻す</button>
+            <div key={todo.id || todo.name} className="list-todo">
+              <li>{todo.name}</li>
+              {/* <button onClick={() => coClickReturn(index)}>戻す</button> */}
             </div>
           );
         })}
       </ul>
     </div>
   );
-};
+});

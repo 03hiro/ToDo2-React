@@ -1,4 +1,4 @@
-import React, { VFC } from "react";
+import React, { memo, VFC } from "react";
 
 const style = {
   backgroundColor: "#00CCCC",
@@ -15,23 +15,23 @@ const style2: React.CSSProperties = {
 };
 
 type Props = {
-  todoText: string;
+  todoText: any;
   onChangeText: React.ChangeEventHandler<HTMLInputElement>;
   onClickAdd: () => void;
 }
 
-export const InputButton: VFC<Props> = (props) => {
+export const InputButton: VFC<Props> = memo((props) => {
   const { todoText, onChangeText, onClickAdd } = props;
   return (
     <div style={style}>
       <div style={style2}>
         <input
           placeholder="ToDoを入力する"
-          value={todoText}
+          value={todoText.name}
           onChange={onChangeText}
         />
         <button onClick={onClickAdd} type="submit">追加</button>
       </div>
     </div>
   );
-};
+});

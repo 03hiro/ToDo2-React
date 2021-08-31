@@ -1,4 +1,4 @@
-import React, { VFC } from "react";
+import React, { memo, VFC } from "react";
 
 const style = {
   backgroundColor: "#66FFFF	",
@@ -10,27 +10,27 @@ const style = {
 };
 
 type Props = {
-  todos: string[];
-  onClickComplete: (index: any) => void;
-  onClickDelete: (index: any) => void;
+  todos: any;
+  onClickComplete: (todo: any) => void;
+  onClickDelete: (todo: any) => void;
 }
 
-export const IncompleteToods: VFC<Props> = (props) => {
-  const { todos, onClickComplete, onClickDelete } = props;
+export const IncompleteToods: VFC<Props> = memo((props) => {
+  const { todos, onClickDelete, onClickComplete } = props;
   return (
     <div style={style}>
       <p className="title">未完了のToDoリスト一覧</p>
       <ul>
-        {todos.map((todo, index) => {
+        {todos.map((todo: any) => {
           return (
-            <div key={todo} className="list-todo">
-              <li>{todo}</li>
-              <button onClick={() => onClickComplete(index)}>完了</button>
-              <button onClick={() => onClickDelete(index)}>削除</button>
+            <div key={todo.id || todo.name} className="list-todo">
+              <li>{todo.name}</li>
+              <button onClick={() => onClickComplete(todo)}>完了</button>
+              <button onClick={() => onClickDelete(todo)}>削除</button>
             </div>
           );
         })}
       </ul>
     </div>
   );
-};
+});
