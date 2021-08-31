@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
+
 import "./styles.css";
 import { InputButton } from "./components/InputButton";
 import { IncompleteToods } from "./components/IncompleteTodos";
 import { CompleteTodos } from "./components/CompleteTodos";
 
-export const App = () => {
+
+
+function App() {
   const [todoText, setTodoText] = useState("");
   const [incompleteTodos, setIncompleteTodos] = useState<string[]>([]);
   const [completeTodos, setCompleteTodos] = useState<string[]>([]);
@@ -47,12 +51,16 @@ export const App = () => {
 
   return (
     <>
+      <form onSubmit={e => {
+        e.preventDefault()
+        onClickAdd()
+      }}>
       <InputButton
         todoText={todoText}
         onChangeText={onChangeText}
         onClickAdd={onClickAdd}
       />
-
+      </form>
       <IncompleteToods
         todos={incompleteTodos}
         onClickComplete={onClickComplete}
@@ -62,6 +70,8 @@ export const App = () => {
         (完了リストの登録は5個までです。)
       </p>
       <CompleteTodos completeTodos={completeTodos} coClickReturn={coClickReturn} />
+      <AmplifySignOut />
     </>
   );
 };
+export default withAuthenticator(App);
