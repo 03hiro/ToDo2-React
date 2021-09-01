@@ -28,7 +28,7 @@ function App() {
     setIncompleteTodos(apiData.data.listTodos.items);
   }
 
-
+  //リストの追加
   
   const onClickAdd = async () => {
     // if (todoText === "") return;
@@ -37,6 +37,8 @@ function App() {
     setIncompleteTodos([...incompleteTodos, todoText]);
     setTodoText(initialInTodos);
   };
+
+  //リストの削除
 
   const onClickDelete = async({ id }: any) => {
     const newTodos = incompleteTodos.filter(todo => todo.id !== id);
@@ -47,6 +49,8 @@ function App() {
     await API.graphql({ query: deleteTodoMutation, variables: { input: {id} }});
   };
 
+  //リストを完了したToDoリストに移動
+
   const onClickComplete = async({ id }: any) => {
     const newIncompleteTodos = incompleteTodos.filter(todo => todo.id !== id);
     const newCompleteTodos = completeTodos.filter(todo => todo.id !== id);
@@ -55,7 +59,7 @@ function App() {
     setCompleteTodos([...completeTodos, newCompleteTodos]);
     setTodoText({name: "", complete: true});
 
-    
+
 
     // if (newCompleteTodos.length >= 6) {
     //   newCompleteTodos.shift();
