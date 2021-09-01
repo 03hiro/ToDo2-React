@@ -27,6 +27,8 @@ function App() {
     const apiData: any = await API.graphql({ query: listTodos });
     setIncompleteTodos(apiData.data.listTodos.items);
   }
+
+
   
   const onClickAdd = async () => {
     // if (todoText === "") return;
@@ -42,7 +44,7 @@ function App() {
     console.log(newTodos);
     
     setIncompleteTodos(newTodos);
-    // await API.graphql({ query: deleteTodoMutation, variables: { input: {id} }});
+    await API.graphql({ query: deleteTodoMutation, variables: { input: {id} }});
   };
 
   const onClickComplete = async({ id }: any) => {
@@ -52,6 +54,8 @@ function App() {
     setIncompleteTodos(newIncompleteTodos);
     setCompleteTodos([...completeTodos, newCompleteTodos]);
     setTodoText({name: "", complete: true});
+
+    
 
     // if (newCompleteTodos.length >= 6) {
     //   newCompleteTodos.shift();
