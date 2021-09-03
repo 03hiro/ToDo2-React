@@ -10,27 +10,28 @@ const style = {
 };
 
 type Props = {
-  completeTodos: any;
-  // coClickReturn: (index: number) => void;
+  todos: any;
+  coClickReturn: (todo: any) => void;
 }
 
 export const CompleteTodos: VFC<Props> = memo((props) => {
-  const { completeTodos, } = props;
+  const { todos, coClickReturn } = props;
 
+  // console.log(todos)
   return (
     <div style={style}>
       <p className="title">完了したToDoリスト一覧</p>
       <ul>
-        {console.log(completeTodos)
-        }
-        {completeTodos.map((todo: any) => {
-          return (
-            <div key={todo.id || todo.name} className="list-todo">
-              <li>{todo.name}</li>
-              {/* <button onClick={() => coClickReturn(index)}>戻す</button> */}
-            </div>
-          );
-        })}
+        {todos.map((todo: any) => (
+          <>
+            {todo.complete ? (
+              <div key={todo.id || todo.name} className="list-todo">
+                <li>{todo.name}</li>
+                <button onClick={() => coClickReturn(todo)}>戻す</button>
+              </div>
+            ) : (null)}
+          </>
+        ))}
       </ul>
     </div>
   );
